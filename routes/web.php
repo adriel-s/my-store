@@ -20,12 +20,12 @@ Route::get('/', [IndexController::class, 'index']);
 Route::get('/product/{product:slug}', [ProductController::class, 'index'])->name('product');
 
 // Admin
-Route::prefix('admin')->group(function () {
-  Route::get('products', [AdminProductController::class, 'index'])->name('admin.products');
-  Route::get('products/create', [AdminProductController::class, 'create'])->name('admin.products.create');
-  Route::post('products/create', [AdminProductController::class, 'store'])->name('admin.products.store');
-  Route::put('products/{product}', [AdminProductController::class, 'update'])->name('admin.products.update');
-  Route::get('products/{product}/edit', [AdminProductController::class, 'edit'])->name('admin.products.edit');
-  Route::get('products/{product}/destroy', [AdminProductController::class, 'destroy'])->name('admin.products.destroy');
-  Route::get('products/{product}/destroyImage', [AdminProductController::class, 'destroyImage'])->name('admin.products.destroyImage');
+Route::controller(AdminProductController::class)->prefix('admin/products')->group(function () {
+  Route::get('/', 'index')->name('admin.products');
+  Route::get('create', 'create')->name('admin.products.create');
+  Route::post('create', 'store')->name('admin.products.store');
+  Route::put('{product}', 'update')->name('admin.products.update');
+  Route::get('{product}/edit', 'edit')->name('admin.products.edit');
+  Route::get('{product}/destroy', 'destroy')->name('admin.products.destroy');
+  Route::get('{product}/destroyImage', 'destroyImage')->name('admin.products.destroyImage');
 });
