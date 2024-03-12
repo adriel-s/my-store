@@ -28,5 +28,4 @@ Route::prefix('admin')->group(function () {
   Route::get('products/{product}/edit', [AdminProductController::class, 'edit'])->name('admin.products.edit');
   Route::get('products/{product}/destroy', [AdminProductController::class, 'destroy'])->name('admin.products.destroy');
   Route::get('products/{product}/destroyImage', [AdminProductController::class, 'destroyImage'])->name('admin.products.destroyImage');
-
 });
