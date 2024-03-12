@@ -7,8 +7,17 @@ use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
-    public function index() {
-        $products = Product::all();
-        return view('index', ['products' => $products]);
+    public function index(Request $request)
+    {
+        $inputSearch = $request->search;
+        $products = Product::query();
+
+        if ($inputSearch) {
+            $products->where('name', 'like', "%$inputSearch%");
+        }
+        
+        $products = $products->get();
+        
+        return view('index', compact('products'));
     }
 }
