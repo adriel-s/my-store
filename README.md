@@ -4,7 +4,8 @@ Loja ficticia de produtos que permite realizar todas operações de um CRUD.
 
 ## Funcionalidades
 
-![Listagem](.github/screenshot1.jpeg)
+![Listagem](/.github/screenshot1.jpg)
+Imagens quebradas por conta do seeder :c
 
 1. Filtrar pelo nome (Página home)
    Utilizando o query builder do Eloquent ORM (trecho do código)
@@ -26,64 +27,68 @@ public function index(Request $request)
 ```
 
 2. Listar, Editar, Criar e Excluir produtos
-   As operações foram feitas como um CRUD normal e a visualização foi feita utilizando os templates do Blade
-   ![Estrutura de das views](.github/screenshot2.jpeg)
+   As operações foram feitas como um CRUD normal e a visualização foi feita utilizando os templates do Blade.
+   ![Estrutura de das views](.github/screenshot2.jpg)
 
 3. Validação dos campos de input (Criar, Editar)
    Separando a camada de validação do controller utilizando o FormRequest.
-   ![Estrutura de das views](.github/screenshot3.jpeg)
+   ![Estrutura de das views](/.github/screenshot3.jpg)
 
-## Rodando o projeto
+## Como Rodar o Projeto
 
-1. Requisitos do Ambiente:
+1. **Requisitos do Ambiente:**
+   - Certifique-se de ter o PHP instalado. Você pode verificar a instalação usando o comando `php -v` no terminal.
+   - Instale o Composer, que é o gerenciador de dependências do PHP. Consulte o [site oficial do Composer](https://getcomposer.org/) para obter instruções de instalação.
+   - Instale o Laravel Installer globalmente usando o Composer: `composer global require laravel/installer`.
+   - Certifique-se de ter um servidor de banco de dados (como MySQL, PostgreSQL ou SQLite) instalado e configurado.
+   - Instale o Node.js e o npm para gerenciar dependências JavaScript. Consulte o [site oficial do Node.js](https://nodejs.org/) para obter instruções de instalação.
 
-- Certifique-se de ter o PHP instalado. Você pode verificar a instalação usando o comando php -v no terminal.
+2. **Clone o Projeto:**
+   - Clone o repositório do projeto do Laravel para o seu ambiente local usando Git. Vá para o diretório onde deseja armazenar o projeto e execute o seguinte comando:
+     ```bash
+     git clone https://github.com/adriel-mp3/crud-laravel.git nome-do-projeto
+     ```
 
-- Instale o Composer, que é o gerenciador de dependências do PHP. Consulte o site oficial do Composer para obter instruções de instalação.
-- Instale o Laravel Installer globalmente usando o Composer: composer global require laravel/installer.
+3. **Instale as Dependências do PHP:**
+   - Navegue até o diretório do projeto e execute o seguinte comando para instalar as dependências do PHP:
+     ```bash
+     cd nome-do-projeto
+     composer install
+     ```
 
-- Certifique-se de ter um servidor de banco de dados (como MySQL, PostgreSQL ou SQLite) instalado e configurado.
+4. **Instale as Dependências do JavaScript (Tailwind CSS):**
+   - Execute o seguinte comando para instalar as dependências do JavaScript usando o npm:
+     ```bash
+     npm install
+     ```
 
-- Instale o Node.js e o npm para gerenciar dependências JavaScript. Consulte o site oficial do Node.js para obter instruções de instalação.
-   Clone o Projeto:
+5. **Crie um Arquivo de Configuração do Ambiente:**
+   - Copie o arquivo `.env.example` para um novo arquivo chamado `.env`. Configure as informações do banco de dados e outras configurações necessárias no arquivo `.env`.
 
-2. Clone o repositório do projeto do Laravel para o seu ambiente local usando Git. Vá para o diretório onde deseja armazenar o projeto e execute o seguinte comando:`
+6. **Gere a Chave de Aplicação:**
+   - Execute o seguinte comando para gerar a chave de aplicação no Laravel:
+     ```bash
+     php artisan key:generate
+     ```
 
-`git clone https://github.com/adriel-s/my-store.git nome-do-projeto`
+7. **Migrar o Banco de Dados:**
+   - Execute as migrações do banco de dados para criar as tabelas necessárias:
+     ```bash
+     php artisan migrate
+     ```
 
-3. Instale as Dependências do PHP:
-   Navegue até o diretório do projeto e execute o seguinte comando para instalar as dependências do PHP:
-   `cd nome-do-projeto`
-   `composer install`
+8. **Inicie o Servidor Embutido:**
+   - Inicie o servidor embutido do Laravel com o seguinte comando:
+     ```bash
+     php artisan serve
+     ```
+     O servidor será iniciado em `http://localhost:8000` por padrão.
 
-4. Instale as Dependências do JavaScript (Tailwind CSS):
-   Execute o seguinte comando para instalar as dependências do JavaScript usando o npm:
-   npm install
+9. **Compilar os Recursos JavaScript e CSS:**
+   - Execute o seguinte comando para compilar os recursos JavaScript e CSS:
+     ```bash
+     npm run dev
+     ```
 
-5. Crie um Arquivo de Configuração do Ambiente:
-
-Copie o arquivo .env.example para um novo arquivo chamado .env. Configure as informações do banco de dados e outras configurações necessárias no arquivo .env.
-
-6. Gere a Chave de Aplicação:
-
-Execute o seguinte comando para gerar a chave de aplicação no Laravel:
-`php artisan key:generate` 
-
-7. Migrar o Banco de Dados:
-
-Execute as migrações do banco de dados para criar as tabelas necessárias:
-`php artisan migrate`
-
-8. Inicie o Servidor Embutido:
-
-Inicie o servidor embutido do Laravel com o seguinte comando:
-`php artisan serve`
-O servidor será iniciado em http://localhost:8000 por padrão. 12. 
-
-9. Compilar os Recursos JavaScript e CSS:
-
-Execute o seguinte comando para compilar os recursos JavaScript e CSS:
-```npm run dev```
-10. Acesse o Projeto:
-
-Abra seu navegador e acesse http://localhost:8000 para ver o projeto Laravel em execução.
+10. **Acesse o Projeto:**
+    - Abra seu navegador e acesse `http://localhost:8000` para ver o projeto Laravel em execução.
