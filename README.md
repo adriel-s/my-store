@@ -1,64 +1,89 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# My Store
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Loja ficticia de produtos que permite realizar todas operações de um CRUD.
 
-## About Laravel
+## Funcionalidades
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+![Listagem](.github/screenshot1.jpeg)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+1. Filtrar pelo nome (Página home)
+   Utilizando o query builder do Eloquent ORM (trecho do código)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+```php
+public function index(Request $request)
+  {
+      $inputSearch = $request->search;
+      $products = Product::query();
 
-## Learning Laravel
+      if ($inputSearch) {
+          $products->where('name', 'like', "%$inputSearch%");
+      }
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+      $products = $products->get();
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+      return view('index', compact('products'));
+  }
+```
 
-## Laravel Sponsors
+2. Listar, Editar, Criar e Excluir produtos
+   As operações foram feitas como um CRUD normal e a visualização foi feita utilizando os templates do Blade
+   ![Estrutura de das views](.github/screenshot2.jpeg)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+3. Validação dos campos de input (Criar, Editar)
+   Separando a camada de validação do controller utilizando o FormRequest.
+   ![Estrutura de das views](.github/screenshot3.jpeg)
 
-### Premium Partners
+## Rodando o projeto
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+1. Requisitos do Ambiente:
 
-## Contributing
+- Certifique-se de ter o PHP instalado. Você pode verificar a instalação usando o comando php -v no terminal.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- Instale o Composer, que é o gerenciador de dependências do PHP. Consulte o site oficial do Composer para obter instruções de instalação.
+- Instale o Laravel Installer globalmente usando o Composer: composer global require laravel/installer.
 
-## Code of Conduct
+- Certifique-se de ter um servidor de banco de dados (como MySQL, PostgreSQL ou SQLite) instalado e configurado.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- Instale o Node.js e o npm para gerenciar dependências JavaScript. Consulte o site oficial do Node.js para obter instruções de instalação.
+   Clone o Projeto:
 
-## Security Vulnerabilities
+2. Clone o repositório do projeto do Laravel para o seu ambiente local usando Git. Vá para o diretório onde deseja armazenar o projeto e execute o seguinte comando:`
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+`git clone https://github.com/adriel-s/my-store.git nome-do-projeto`
 
-## License
+3. Instale as Dependências do PHP:
+   Navegue até o diretório do projeto e execute o seguinte comando para instalar as dependências do PHP:
+   `cd nome-do-projeto`
+   `composer install`
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+4. Instale as Dependências do JavaScript (Tailwind CSS):
+   Execute o seguinte comando para instalar as dependências do JavaScript usando o npm:
+   npm install
+
+5. Crie um Arquivo de Configuração do Ambiente:
+
+Copie o arquivo .env.example para um novo arquivo chamado .env. Configure as informações do banco de dados e outras configurações necessárias no arquivo .env.
+
+6. Gere a Chave de Aplicação:
+
+Execute o seguinte comando para gerar a chave de aplicação no Laravel:
+`php artisan key:generate` 
+
+7. Migrar o Banco de Dados:
+
+Execute as migrações do banco de dados para criar as tabelas necessárias:
+`php artisan migrate`
+
+8. Inicie o Servidor Embutido:
+
+Inicie o servidor embutido do Laravel com o seguinte comando:
+`php artisan serve`
+O servidor será iniciado em http://localhost:8000 por padrão. 12. 
+
+9. Compilar os Recursos JavaScript e CSS:
+
+Execute o seguinte comando para compilar os recursos JavaScript e CSS:
+```npm run dev```
+10. Acesse o Projeto:
+
+Abra seu navegador e acesse http://localhost:8000 para ver o projeto Laravel em execução.
