@@ -1,6 +1,7 @@
 @extends('layouts.index')
 @section('title', 'Formulário de produto')
 @section('description', 'Edite, crie e atualize um determinado produto.')
+@inject('storage', '\Illuminate\Support\Facades\Storage')
 
 @section('content')
     <section class="text-gray-600">
@@ -69,7 +70,7 @@
                         @if ($product->cover)
                             <div class="flex items-center justify-center w-max-[100px] h-max-[100px]">
                                 <img alt="ecommerce" class="max-w-[100px] object-cover object-center rounded"
-                                    src="{{ \Illuminate\Support\Facades\Storage::url($product->cover) }}">
+                                    src="{{ $storage::url($product->cover) }}">
 
                                 <a href="{{ route('admin.products.destroyImage', $product->id) }}"
                                     class="flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">
