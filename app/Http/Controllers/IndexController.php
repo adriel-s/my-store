@@ -10,13 +10,13 @@ class IndexController extends Controller
     public function index(Request $request)
     {
         $inputSearch = $request->search;
-        $products = Product::query();
+        $productsQuery = Product::query();
 
         if ($inputSearch) {
-            $products->where('name', 'like', "%$inputSearch%");
+            $productsQuery->where('name', 'like', "%$inputSearch%");
         }
         
-        $products = $products->get();
+        $products = $productsQuery->get();
         
         return view('index', compact('products'));
     }
